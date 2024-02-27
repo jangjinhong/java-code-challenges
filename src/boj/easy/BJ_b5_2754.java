@@ -1,4 +1,4 @@
-package baekjun.easy;
+package boj.easy;
 
 import java.util.Scanner;
 
