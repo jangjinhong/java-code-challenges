@@ -9,31 +9,37 @@ public class Q10828_boj {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuffer sb = new StringBuffer();
-
-        Stack<Integer> st = new Stack<>();
+        Stack<Integer> stack = new Stack<>();
         int n = Integer.parseInt(br.readLine());
 
-        int start = 1;
+        while(n-- > 0) {
+            String[] command = br.readLine().split(" ");
+            switch(command[0]) {
+                case "push":
+                    stack.push(Integer.parseInt(command[1]));
+                    break;
 
-        for(int i=0; i<n; i++) {
-            int num = Integer.parseInt(br.readLine());
+                case "pop":
+                    sb.append(stack.isEmpty()? -1 : stack.pop()).append("\n");
+                    break;
 
-            if(start <= num) {
-                for(int j=start; j<=num; j++) {
-                    st.push(j);
-                    sb.append("+").append("\n");
-                }
-                start = num+1;
+                case "size":
+                    sb.append(stack.size()).append("\n");
+                    break;
+
+                case "empty":
+                    sb.append(stack.isEmpty()? 1 : 0).append("\n");
+                    break;
+
+                case "top":
+                    sb.append(stack.isEmpty()? -1 : stack.lastElement()).append("\n");
+                    break;
+
+                default:
+                    break;
             }
-            if(st.peek() != num) {
-                System.out.println("NO");
-                System.exit(0);
-            }
-            st.pop();
-            sb.append("-").append("\n");
-            System.out.println(st);
         }
-        System.out.println(sb);
 
+        System.out.println(sb);
     }
 }
